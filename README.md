@@ -13,3 +13,10 @@ with a curses interface.
 * [Mido docs](https://mido.readthedocs.io/en/stable/index.html)
 * [Renoise](https://www.renoise.com)
 
+## Tests
+
+Run:
+
+```
+python -m pytest test/
+```
