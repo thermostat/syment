@@ -6,6 +6,7 @@ syment.midi_core - Core midi functionality
 
 import mido
 
+from typing import Optional
 
 PITCH_OFFSETS = {
     "C"  : 0,
@@ -39,20 +40,22 @@ class Pitch:
     C4 = 60 
     """
     @staticmethod
-    def name_to_value(name):
+    def name_to_value(name: str) -> int:
         scale = int(name[-1])+1
         pitch = PITCH_OFFSETS[name[:-1]]
         return (scale*12)+pitch
 
     @staticmethod
-    def value_to_name(value):
+    def value_to_name(value: int) -> str:
         if value < 12 or value > 110:
             raise ValueError
         scale = (value // 12)-1
         pitch = VALUE_NAMES[value%12]
         return f"{pitch}{scale}"
     
-    def __init__(self, name=None, value=None):
+    def __init__(self,
+                 name:Optional[str]=None,
+                 value:Optional[int]=None):
         self._name = name
         self._value = value
         if self._name != None and self._value == None:
@@ -74,7 +77,16 @@ class Pitch:
 
 
 class Note:
-    def __init__(self, pitch, starttime, endtime, vel=127, channel=0):
+    """
+    A note consists of a pitch with a start, end, velocity and 
+    channel.
+    """
+    def __init__(self,
+                 pitch: Pitch,
+                 starttime: int,
+                 endtime: int,
+                 vel:int=127,
+                 channel:int=0):
         self._pitch = pitch
         self._starttime = starttime
         self._endtime = endtime

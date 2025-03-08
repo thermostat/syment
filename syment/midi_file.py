@@ -16,7 +16,7 @@ class MidiFile:
 class MidiTrack:
     def __init__(self, mido_track):
         self._mido_track = mido_track
-        self.name = None
+        self.name = None 
 
 class MidiTime:
     def __init__(self, ticks, timesigdict=None):
