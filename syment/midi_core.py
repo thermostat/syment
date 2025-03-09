@@ -59,9 +59,9 @@ class Pitch:
         self._name = name
         self._value = value
         if self._name != None and self._value == None:
-            self._value = name_to_value(self._name)
+            self._value = Pitch.name_to_value(self._name)
         elif self._name == None and self._value != None:
-            self._name = value_to_name(self._value)
+            self._name = Pitch.value_to_name(self._value)
 
     def __str__(self):
         return self._name
